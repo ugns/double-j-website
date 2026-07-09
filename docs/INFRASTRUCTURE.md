@@ -144,6 +144,6 @@ Governance for AI/MCP-assisted changes: [`docs/AI-MCP-POLICY.md`](AI-MCP-POLICY.
 - [x] Registrar NS match deployment-account hosted zone
 - [x] ACM certificate issued
 - [x] Terraform apply completed
-- [ ] Deploy site assets via `deploy.yml`
-- [ ] Verify contact form delivers to `jeremy@doublejpropertygroup.com`
-- [ ] Confirm 404/403 error pages render correctly
+- [x] Deploy site assets via `deploy.yml`
+- [x] Verify contact form delivers to `jeremy@doublejpropertygroup.com`
+- [x] Confirm 404/403 error pages render correctly
