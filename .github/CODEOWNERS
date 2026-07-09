@@ -1,0 +1,11 @@
+# Require infra owners on CI/CD and Terraform changes
+.github/workflows/ @ugns/engineering
+terraform/ @ugns/engineering
+infra/ @ugns/engineering
+*.tf @ugns/engineering
+*.tfvars @ugns/engineering
+
+# MCP and AI policy ownership
+docs/AI-MCP-POLICY.md @ugns/engineering
+docs/INFRASTRUCTURE.md @ugns/engineering
+.cursor/ @ugns/engineering

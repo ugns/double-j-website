@@ -1,0 +1,5 @@
+# Local Cursor MCP config may contain personal tokens or local paths
+.cursor/mcp.json
+
+# Optional: allow a safe example config
+!.cursor/mcp.example.json

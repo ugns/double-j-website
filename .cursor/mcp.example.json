@@ -1,0 +1,35 @@
+{
+    "mcpServers": {
+      "github-readonly": {
+        "command": "docker",
+        "args": [
+          "run",
+          "-i",
+          "--rm",
+          "-p",
+          "127.0.0.1:8085:8085",
+          "-e",
+          "GITHUB_OAUTH_CALLBACK_PORT",
+          "-e",
+          "GITHUB_TOOLSETS",
+          "-e",
+          "GITHUB_READ_ONLY",
+          "ghcr.io/github/github-mcp-server"
+        ],
+        "env": {
+          "GITHUB_OAUTH_CALLBACK_PORT": "8085",
+          "GITHUB_TOOLSETS": "context,repos,pull_requests,actions",
+          "GITHUB_READ_ONLY": "1"
+        }
+      },
+      "terraform-registry": {
+        "command": "docker",
+        "args": [
+          "run",
+          "-i",
+          "--rm",
+          "hashicorp/terraform-mcp-server"
+        ]
+      }
+    }
+  }
