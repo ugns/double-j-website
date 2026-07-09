@@ -60,6 +60,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v6
         with:
           role-to-assume: ${{ env.AWS_GITHUB_ACTIONS_ROLE }}
+          role-chaining: true
           aws-region: us-east-1
 
       - name: Inject contact API URL
