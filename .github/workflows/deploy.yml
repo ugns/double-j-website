@@ -12,8 +12,6 @@ on:
 env:
   AWS_GITHUB_OIDC_ROLE: ${{ secrets.AWS_MGMT_ROLE_ARN }}
   AWS_GITHUB_ACTIONS_ROLE: ${{ secrets.AWS_GITHUB_ROLE_ARN }}
-  TF_VAR_repository: "https://github.com/${{ github.repository }}"
-  TF_VAR_gh_action_role: ${{ secrets.AWS_GITHUB_ROLE_ARN }}
 
 permissions:
   id-token: write

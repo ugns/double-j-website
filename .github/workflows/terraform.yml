@@ -2,17 +2,22 @@ name: Terraform Infrastructure
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
+    paths:
+      - "terraform/**"
+      - "lambda/**"
+      - ".github/workflows/terraform.yml"
   pull_request:
-    branches:
-      - main
+    branches: [main]
+    paths:
+      - "terraform/**"
+      - "lambda/**"
+      - ".github/workflows/terraform.yml"
     types: [assigned, opened, synchronize, reopened]
 
 env:
   AWS_GITHUB_OIDC_ROLE: ${{ secrets.AWS_MGMT_ROLE_ARN }}
   AWS_GITHUB_ACTIONS_ROLE: ${{ secrets.AWS_GITHUB_ROLE_ARN }}
-  TF_VAR_repository: "https://github.com/${{ github.repository }}"
 
 permissions:
   id-token: write
@@ -65,6 +70,7 @@ jobs:
       id: plan
       env:
         TF_VAR_gh_action_role: ${{ env.AWS_GITHUB_ACTIONS_ROLE }}
+        TF_VAR_repository: "https://github.com/${{ github.repository }}"
       run: terraform plan -out .planfile
 
     - name: Post PR comment
@@ -83,4 +89,5 @@ jobs:
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
       env:
         TF_VAR_gh_action_role: ${{ env.AWS_GITHUB_ACTIONS_ROLE }}
+        TF_VAR_repository: "https://github.com/${{ github.repository }}"
       run: terraform apply -no-color -auto-approve .planfile
