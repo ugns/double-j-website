@@ -276,6 +276,26 @@ h3 {
   color: var(--color-gold-dark);
 }
 
+#contact-reveal[hidden] {
+  display: none;
+}
+
+#contact-reveal.is-revealed {
+  animation: contactReveal 0.35s ease;
+}
+
+@keyframes contactReveal {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* Footer */
 
 .footer {

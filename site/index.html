@@ -20,44 +20,46 @@
       <a class="btn btn-gold" href="#contact">Get in Touch</a>
     </section>
 
-    <div class="section-divider" aria-hidden="true"></div>
+    <div id="contact-reveal">
+      <div class="section-divider" aria-hidden="true"></div>
 
-    <section class="contact" id="contact">
-      <div class="contact__inner">
-        <h2 class="contact__heading">Start a Conversation</h2>
-        <p class="contact__subheading">Tell us about your investment goals or property opportunities.</p>
+      <section class="contact" id="contact">
+        <div class="contact__inner">
+          <h2 class="contact__heading">Start a Conversation</h2>
+          <p class="contact__subheading">Tell us about your investment goals or property opportunities.</p>
 
-        <div class="contact__card">
-          <form id="contact-form" novalidate>
-            <div class="form-group">
-              <label for="name">Name</label>
-              <input type="text" id="name" name="name" required autocomplete="name" maxlength="100">
-            </div>
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" id="email" name="email" required autocomplete="email" maxlength="254">
-            </div>
-            <div class="form-group">
-              <label for="phone">Phone <span class="optional">(optional)</span></label>
-              <input type="tel" id="phone" name="phone" autocomplete="tel" maxlength="30">
-            </div>
-            <div class="form-group">
-              <label for="message">Message</label>
-              <textarea id="message" name="message" required maxlength="5000"></textarea>
-            </div>
-            <div class="form-actions">
-              <button type="submit" class="btn btn-gold" id="submit-btn">Send Message</button>
-            </div>
-            <div class="form-message" id="form-message" role="alert" aria-live="polite"></div>
-          </form>
+          <div class="contact__card">
+            <form id="contact-form" novalidate>
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required autocomplete="name" maxlength="100">
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required autocomplete="email" maxlength="254">
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone <span class="optional">(optional)</span></label>
+                <input type="tel" id="phone" name="phone" autocomplete="tel" maxlength="30">
+              </div>
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" required maxlength="5000"></textarea>
+              </div>
+              <div class="form-actions">
+                <button type="submit" class="btn btn-gold" id="submit-btn">Send Message</button>
+              </div>
+              <div class="form-message" id="form-message" role="alert" aria-live="polite"></div>
+            </form>
+          </div>
+
+          <p class="contact__email">
+            Or email us directly at
+            <a href="mailto:Jeremy@DoubleJPropertyGroup.com">Jeremy@DoubleJPropertyGroup.com</a>
+          </p>
         </div>
-
-        <p class="contact__email">
-          Or email us directly at
-          <a href="mailto:Jeremy@DoubleJPropertyGroup.com">Jeremy@DoubleJPropertyGroup.com</a>
-        </p>
-      </div>
-    </section>
+      </section>
+    </div>
   </main>
 
   <footer class="footer">

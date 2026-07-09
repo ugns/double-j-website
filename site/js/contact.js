@@ -1,6 +1,38 @@
 (function () {
   "use strict";
 
+  var contactReveal = document.getElementById("contact-reveal");
+
+  function showContact() {
+    if (!contactReveal) return;
+    contactReveal.hidden = false;
+    contactReveal.classList.add("is-revealed");
+  }
+
+  if (contactReveal) {
+    if (location.hash === "#contact") {
+      showContact();
+    } else {
+      contactReveal.hidden = true;
+    }
+
+    var cta = document.querySelector('a[href="#contact"]');
+    if (cta) {
+      cta.addEventListener("click", function (event) {
+        event.preventDefault();
+        showContact();
+        history.pushState(null, "", "#contact");
+        document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
+        var nameField = document.getElementById("name");
+        if (nameField) nameField.focus();
+      });
+    }
+
+    window.addEventListener("hashchange", function () {
+      if (location.hash === "#contact") showContact();
+    });
+  }
+
   var form = document.getElementById("contact-form");
   if (!form) return;
 
