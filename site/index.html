@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Double J Property Group LLC — strategic real estate investments built on integrity and long-term value.">
+  <title>Double J Property Group LLC</title>
+  <link rel="icon" href="/assets/favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <main>
+    <section class="hero" id="top">
+      <img class="hero__logo" src="/assets/logo.png" alt="Double J Property Group LLC" width="280" height="auto">
+      <h1 class="hero__tagline">Strategic real estate investments built on integrity and long-term value</h1>
+      <p class="hero__subtext">Double J Property Group LLC acquires and develops residential and commercial properties with a focus on sustainable returns.</p>
+      <a class="btn btn-gold" href="#contact">Get in Touch</a>
+    </section>
+
+    <div class="section-divider" aria-hidden="true"></div>
+
+    <section class="contact" id="contact">
+      <div class="contact__inner">
+        <h2 class="contact__heading">Start a Conversation</h2>
+        <p class="contact__subheading">Tell us about your investment goals or property opportunities.</p>
+
+        <div class="contact__card">
+          <form id="contact-form" novalidate>
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" required autocomplete="name" maxlength="100">
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required autocomplete="email" maxlength="254">
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone <span class="optional">(optional)</span></label>
+              <input type="tel" id="phone" name="phone" autocomplete="tel" maxlength="30">
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" required maxlength="5000"></textarea>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-gold" id="submit-btn">Send Message</button>
+            </div>
+            <div class="form-message" id="form-message" role="alert" aria-live="polite"></div>
+          </form>
+        </div>
+
+        <p class="contact__email">
+          Or email us directly at
+          <a href="mailto:Jeremy@DoubleJPropertyGroup.com">Jeremy@DoubleJPropertyGroup.com</a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    &copy; 2026 Double J Property Group LLC
+  </footer>
+
+  <script src="/js/config.js"></script>
+  <script src="/js/contact.js"></script>
+</body>
+</html>

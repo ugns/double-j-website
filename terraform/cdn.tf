@@ -21,13 +21,13 @@ module "cdn" {
   custom_error_response = [
     {
       error_code         = 404
-      response_code      = 200
-      response_page_path = "/index.html"
+      response_code      = 404
+      response_page_path = "/404.html"
     },
     {
       error_code         = 403
-      response_code      = 200
-      response_page_path = "/index.html"
+      response_code      = 403
+      response_page_path = "/403.html"
     },
   ]
 
