@@ -32,3 +32,8 @@ output "website_url" {
   description = "Primary website URL"
   value       = "https://${var.domain_name}"
 }
+
+output "contact_api_url" {
+  description = "Contact form API endpoint URL"
+  value       = "${aws_apigatewayv2_api.contact.api_endpoint}/contact"
+}

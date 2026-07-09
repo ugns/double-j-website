@@ -32,6 +32,7 @@ out/
 .next/
 .nuxt/
 .astro/
+lambda/contact/handler.zip
 
 # --- Environment / secrets ---
 .env

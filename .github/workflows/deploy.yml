@@ -1,0 +1,85 @@
+name: Deploy Site
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "site/**"
+      - ".github/workflows/deploy.yml"
+  workflow_dispatch:
+
+env:
+  AWS_GITHUB_OIDC_ROLE: ${{ secrets.AWS_MGMT_ROLE_ARN }}
+  AWS_GITHUB_ACTIONS_ROLE: ${{ secrets.AWS_GITHUB_ROLE_ARN }}
+  TF_VAR_repository: "https://github.com/${{ github.repository }}"
+  TF_VAR_gh_action_role: ${{ secrets.AWS_GITHUB_ROLE_ARN }}
+
+permissions:
+  id-token: write
+  contents: read
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    concurrency:
+      group: deploy-site-${{ github.ref }}
+      cancel-in-progress: false
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v6
+        with:
+          role-to-assume: ${{ env.AWS_GITHUB_OIDC_ROLE }}
+          aws-region: us-east-1
+
+      - name: Terraform Init
+        working-directory: terraform/
+        run: terraform init -no-color -backend-config="key=${{ github.repository }}/terraform.tfstate"
+
+      - name: Read Terraform outputs
+        id: tf
+        working-directory: terraform/
+        run: |
+          echo "s3_bucket=$(terraform output -raw s3_bucket_name)" >> "$GITHUB_OUTPUT"
+          echo "distribution_id=$(terraform output -raw cloudfront_distribution_id)" >> "$GITHUB_OUTPUT"
+          echo "contact_api_url=$(terraform output -raw contact_api_url)" >> "$GITHUB_OUTPUT"
+
+      - name: Configure deployment AWS credentials
+        uses: aws-actions/configure-aws-credentials@v6
+        with:
+          role-to-assume: ${{ env.AWS_GITHUB_ACTIONS_ROLE }}
+          aws-region: us-east-1
+
+      - name: Inject contact API URL
+        run: |
+          sed "s|__CONTACT_API_URL__|${{ steps.tf.outputs.contact_api_url }}|g" \
+            site/js/config.js > site/js/config.js.tmp
+          mv site/js/config.js.tmp site/js/config.js
+
+      - name: Sync site to S3
+        run: |
+          aws s3 sync site/ "s3://${{ steps.tf.outputs.s3_bucket }}" \
+            --delete \
+            --cache-control "public, max-age=3600"
+
+          aws s3 cp site/js/config.js "s3://${{ steps.tf.outputs.s3_bucket }}/js/config.js" \
+            --cache-control "no-cache, no-store, must-revalidate" \
+            --content-type "application/javascript"
+
+      - name: Invalidate CloudFront cache
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id "${{ steps.tf.outputs.distribution_id }}" \
+            --paths "/*"

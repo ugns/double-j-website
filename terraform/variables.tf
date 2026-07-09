@@ -18,3 +18,8 @@ variable "aliases" {
   type        = list(string)
   default     = []
 }
+
+variable "contact_recipient_email" {
+  description = "Email address that receives contact form submissions"
+  type        = string
+}
