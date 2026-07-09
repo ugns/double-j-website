@@ -3,3 +3,45 @@
 
 # Optional: allow a safe example config
 !.cursor/mcp.example.json
+
+# --- Terraform (local state, plans, caches) ---
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+*.planfile
+.terraform.tfstate.lock.info
+crash.log
+crash.*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc
+
+# --- Sensitive variable files (if introduced later) ---
+# *.auto.tfvars
+# secrets.tfvars
+# *.secret.tfvars
+
+# --- Static site build output (future deploy workflow) ---
+dist/
+build/
+out/
+.next/
+.nuxt/
+.astro/
+
+# --- Environment / secrets ---
+.env
+.env.*
+!.env.example
+
+# --- OS / editor ---
+.DS_Store
+Thumbs.db
+*.swp
+*~
+.idea/
+.vscode/

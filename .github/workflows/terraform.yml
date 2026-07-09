@@ -12,6 +12,7 @@ on:
 env:
   AWS_GITHUB_OIDC_ROLE: ${{ secrets.AWS_MGMT_ROLE_ARN }}
   AWS_GITHUB_ACTIONS_ROLE: ${{ secrets.AWS_GITHUB_ROLE_ARN }}
+  TF_VAR_repository: "https://github.com/${{ github.repository }}"
 
 permissions:
   id-token: write
@@ -36,7 +37,7 @@ jobs:
   
     steps:
     - name: Checkout
-      uses: actions/checkout@v6
+      uses: actions/checkout@v4
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v4
